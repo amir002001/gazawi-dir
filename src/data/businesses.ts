@@ -6,10 +6,17 @@ export type BusinessProfile = {
   emailOrSocial?: string;
   phone?: string;
   story: string;
+  instagramEmbedUrl?: string;
 };
 
 const placeholderStory =
   "We will capture each family's 1–2 paragraph story here once the details are ready. This temporary text ensures the layout reflects the intended length and provides a reminder to circle back.\n\nPlease keep any notes about this family's journey handy so we can replace this placeholder quickly during the next pass.";
+
+const toInstagramEmbed = (url?: string) => {
+  if (!url || !url.includes("instagram.com")) return undefined;
+  const cleaned = url.split("?")[0].replace(/\/?$/, "");
+  return `${cleaned}/embed`;
+};
 
 export const businesses: BusinessProfile[] = [
   {
@@ -21,6 +28,7 @@ export const businesses: BusinessProfile[] = [
       "https://www.instagram.com/mo_cuts07?igsh=MWFjemd1eGhiZnJ6dA==",
     phone: "2897075944",
     story: placeholderStory,
+    instagramEmbedUrl: toInstagramEmbed("https://www.instagram.com/mo_cuts07"),
   },
   {
     id: "yansoona-bakery",
@@ -64,6 +72,7 @@ export const businesses: BusinessProfile[] = [
     emailOrSocial: "https://www.instagram.com/rmoda426?igsh=NGJxbjNtY2lxNTFm",
     phone: "6476400334",
     story: placeholderStory,
+    instagramEmbedUrl: toInstagramEmbed("https://www.instagram.com/rmoda426"),
   },
   {
     id: "forno-amore",
@@ -109,6 +118,7 @@ export const businesses: BusinessProfile[] = [
       "https://www.instagram.com/cake_up_1?igsh=MTF5YjNrMTgwNnF3ZQ==",
     phone: "437-662-6262",
     story: placeholderStory,
+    instagramEmbedUrl: toInstagramEmbed("https://www.instagram.com/cake_up_1"),
   },
   {
     id: "nevins-maamool",
@@ -117,6 +127,9 @@ export const businesses: BusinessProfile[] = [
     contact: "Nevin's family",
     emailOrSocial: "https://www.instagram.com/gaza.cookies/",
     story: placeholderStory,
+    instagramEmbedUrl: toInstagramEmbed(
+      "https://www.instagram.com/gaza.cookies"
+    ),
   },
   {
     id: "neveens-kitchen",
