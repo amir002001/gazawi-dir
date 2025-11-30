@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { BusinessCard } from "./components/BusinessCard";
 import { businesses } from "./data/businesses";
 
 const categoryOptions = Array.from(
   new Set(businesses.map((business) => business.category))
 ).sort();
+
+const heroWatermelonPattern: CSSProperties = {
+  backgroundImage:
+    "linear-gradient(180deg, rgba(244,108,119,0.25) 0%, rgba(255,255,255,0.9) 70%, rgba(54,111,71,0.15) 100%)," +
+    "repeating-linear-gradient(120deg, rgba(255,255,255,0.4) 0, rgba(255,255,255,0.4) 22px, transparent 22px, transparent 44px)," +
+    "radial-gradient(circle at 10% 30%, rgba(34,34,34,0.08) 0.8%, transparent 3%)," +
+    "radial-gradient(circle at 25% 55%, rgba(34,34,34,0.08) 1%, transparent 3.5%)," +
+    "radial-gradient(circle at 55% 35%, rgba(34,34,34,0.08) 0.9%, transparent 3%)," +
+    "radial-gradient(circle at 80% 45%, rgba(34,34,34,0.08) 0.8%, transparent 3%)," +
+    "radial-gradient(circle at 92% 20%, rgba(34,34,34,0.08) 0.75%, transparent 3%)",
+  backgroundSize:
+    "100% 100%, 320px 320px, 280px 280px, 340px 340px, 360px 360px, 380px 380px, 420px 420px",
+};
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -16,7 +29,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-page text-flag-charcoal">
-      <section className="relative overflow-hidden border-b border-flag-sand/40 bg-linear-to-b from-flag-cream via-flag-cream to-flag-green/10 pb-16 pt-14">
+      <section
+        className="relative overflow-hidden border-b border-flag-sand/40 bg-linear-to-b from-flag-cream via-flag-cream to-flag-green/10 pb-16 pt-14"
+        style={heroWatermelonPattern}
+      >
         <div
           className="pointer-events-none absolute inset-0 pal-pattern opacity-10"
           aria-hidden
@@ -25,7 +41,7 @@ function App() {
           className="pointer-events-none absolute inset-0 fiber-paper opacity-70 mix-blend-soft-light"
           aria-hidden
         />
-        <div className="relative mx-auto flex max-w-5xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto flex max-w-4xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
           <header className="space-y-5">
             <p className="inline-flex w-fit items-center gap-2 rounded-md bg-flag-green/90 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-flag-cream">
               From Gaza, with care
@@ -61,7 +77,7 @@ function App() {
         </div>
       </section>
 
-      <main className="mx-auto max-w-4xl px-4 pb-24 pt-12 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-3xl px-4 pb-24 pt-12 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4">
           <div className="rounded-2xl border border-flag-sand/50 bg-white/85 p-6 shadow-soft">
             <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.4em] text-flag-green">

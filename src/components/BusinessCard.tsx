@@ -1,14 +1,20 @@
+import type { LucideIcon } from "lucide-react";
+import { Globe, Mail, Phone, Share2 } from "lucide-react";
 import type { BusinessProfile } from "../data/businesses";
 
-const labelClasses =
-  "text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-flag-charcoal/60";
+const ensureProtocol = (value: string) =>
+  value.startsWith("http") ? value : `https://${value}`;
 
-const infoValueClasses = "text-flag-charcoal text-base";
+const sanitizePhone = (value: string) => value.replace(/\s+/g, "");
 
-const PLACEHOLDER_INSTAGRAM_EMBED =
-  "https://www.instagram.com/pymtoronto/embed";
-
-const isUrl = (value: string) => value.startsWith("http");
+type DetailItem = {
+  key: string;
+  label: string;
+  value: string;
+  icon: LucideIcon;
+  href: string;
+  target?: "_blank";
+};
 
 export type BusinessCardProps = {
   profile: BusinessProfile;
@@ -18,29 +24,46 @@ export function BusinessCard({ profile }: BusinessCardProps) {
   const {
     name,
     category,
-    contact,
-    emailOrSocial,
+    email,
+    social,
+    website,
     phone,
     story,
     instagramEmbedUrl,
   } = profile;
-  const embedUrl = instagramEmbedUrl ?? PLACEHOLDER_INSTAGRAM_EMBED;
 
-  const infoRows = [
-    contact && {
-      label: "Contact",
-      value: contact,
+  const detailItems = [
+    website && {
+      key: "website",
+      label: "Website",
+      value: website,
+      icon: Globe,
+      href: ensureProtocol(website),
+      target: "_blank" as const,
     },
-    emailOrSocial &&
-      !isUrl(emailOrSocial) && {
-        label: "Email",
-        value: emailOrSocial,
-      },
+    email && {
+      key: "email",
+      label: "Email",
+      value: email,
+      icon: Mail,
+      href: `mailto:${email}`,
+    },
+    social && {
+      key: "social",
+      label: "Social",
+      value: social,
+      icon: Share2,
+      href: ensureProtocol(social),
+      target: "_blank" as const,
+    },
     phone && {
+      key: "phone",
       label: "Phone",
       value: phone,
+      icon: Phone,
+      href: `tel:${sanitizePhone(phone)}`,
     },
-  ].filter(Boolean) as { label: string; value: string }[];
+  ].filter((item): item is DetailItem => Boolean(item));
 
   return (
     <article className="card-tape relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-flag-green/25 bg-flag-cream/90 p-6 text-sm shadow-card transition hover:-translate-y-1 hover:border-flag-green/50 hover:shadow-card-strong">
@@ -53,68 +76,72 @@ export function BusinessCard({ profile }: BusinessCardProps) {
         aria-hidden
       />
 
-      <header className="relative space-y-1">
+      <header className="relative space-y-3">
         <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-flag-green">
           {category}
         </p>
-        <h3 className="text-2xl font-bold text-flag-charcoal">{name}</h3>
-        {contact ? (
-          <p className="text-sm text-flag-charcoal/75">{contact}</p>
-        ) : null}
+        <div className="flex flex-wrap items-center gap-3">
+          <h3 className="text-2xl font-bold text-flag-charcoal flex-1">
+            {name}
+          </h3>
+          {detailItems.length > 0 && (
+            <div className="flex items-center gap-2">
+              {detailItems.map(
+                ({ key, label, value, icon: Icon, href, target }) => (
+                  <a
+                    key={key}
+                    href={href}
+                    target={target}
+                    rel={target === "_blank" ? "noreferrer" : undefined}
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-flag-green/40 bg-white/80 text-flag-green shadow-sm transition hover:-translate-y-0.5 hover:border-flag-green/60 hover:text-flag-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flag-red"
+                    aria-label={`${label}: ${value}`}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                )
+              )}
+            </div>
+          )}
+        </div>
       </header>
 
-      {infoRows.length > 0 && (
-        <section className="relative rounded-xl border border-flag-green/25 bg-white/75 p-4">
-          <dl className="space-y-3">
-            {infoRows.map((row) => (
-              <div key={row.label} className="flex flex-col gap-1">
-                <dt className={labelClasses}>{row.label}</dt>
-                <dd>
-                  {isUrl(row.value) ? (
-                    <a
-                      href={row.value}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex w-fit items-center gap-1 text-flag-green underline decoration-flag-red/40 decoration-2 underline-offset-4 transition hover:decoration-flag-red"
-                    >
-                      {new URL(row.value).hostname.replace(/^www\./, "")}
-                    </a>
-                  ) : (
-                    <span className={infoValueClasses}>{row.value}</span>
-                  )}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-      )}
-
-      <div className="relative space-y-3 rounded-xl border border-flag-green/15 bg-white/80 p-4 text-[0.95rem] leading-relaxed text-flag-charcoal/85">
-        {story.split("\n\n").map((paragraph, index) => (
-          <p
-            key={index}
-            className="first:before:mr-2 first:before:content-['“'] last:after:ml-2 last:after:content-['”']"
-          >
-            {paragraph}
-          </p>
-        ))}
-      </div>
-
-      <div className="relative mt-auto rounded-xl border border-flag-green/30 bg-white/70 p-3 shadow-soft">
-        <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-flag-charcoal/60">
-          Instagram glimpse
-        </p>
-        <div className="relative overflow-hidden rounded-lg border border-flag-green/20 bg-flag-charcoal/5">
-          <iframe
-            title={`${name} Instagram window`}
-            src={`${embedUrl}?cr=1&v=12`}
-            loading="lazy"
-            allow="encrypted-media"
-            width="100%"
-            className="w-full aspect-8/7"
+      <section className="relative space-y-4 text-base leading-relaxed text-flag-charcoal/90">
+        <div className="inline-flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-flag-green/80">
+          <span
+            className="inline-block h-px w-10 bg-flag-green/50"
+            aria-hidden
           />
+          Their Story
         </div>
-      </div>
+        <div className="space-y-3">
+          {story.split("\n\n").map((paragraph, index) => (
+            <p
+              key={index}
+              className="before:mr-2 before:text-flag-red before:content-['“'] after:ml-2 after:text-flag-red after:content-['”']"
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      {instagramEmbedUrl && (
+        <div className="relative mt-auto rounded-xl border border-flag-green/30 bg-white/70 p-3 shadow-soft">
+          <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-flag-charcoal/60">
+            Instagram glimpse
+          </p>
+          <div className="relative overflow-hidden rounded-lg border border-flag-green/20 bg-flag-charcoal/5">
+            <iframe
+              title={`${name} Instagram window`}
+              src={`${instagramEmbedUrl}?cr=1&v=12`}
+              loading="lazy"
+              allow="encrypted-media"
+              width="100%"
+              className="w-full aspect-8/7"
+            />
+          </div>
+        </div>
+      )}
     </article>
   );
 }
