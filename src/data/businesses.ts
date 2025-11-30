@@ -53,6 +53,10 @@ export const businesses: BusinessProfile[] = [
     id: "al-dar-catering",
     name: "Al Dar Catering",
     category: "Food",
+    social: "https://www.instagram.com/al_dar_catering/",
+    instagramEmbedUrl: toInstagramEmbed(
+      "https://www.instagram.com/al_dar_catering/"
+    ),
     phone: "905 749 6560",
     story:
       "Al Dar Catering was founded to blend a deep passion for cooking with a commitment to preserving the richness of Palestinian cuisine. Each dish embodies the taste of home and the warmth of tradition, crafted with care to satisfy every palate. Where skill meets heritage, Al Dar brings authentic flavors to every table.",
@@ -88,14 +92,19 @@ export const businesses: BusinessProfile[] = [
     id: "lammetna",
     name: "Lammetna",
     category: "Food",
+    social: "https://www.instagram.com/lammetnakitchen/",
+    instagramEmbedUrl: toInstagramEmbed(
+      "https://www.instagram.com/lammetnakitchen/"
+    ),
     phone: "(437) 385-7818",
     story:
       "Inspired by the warmth of Palestinian hospitality, Lammetna serves a delightful mix of traditional dishes, pastries, and desserts. Every recipe carries the familiar comfort of home-cooked flavor, inviting you to gather, share, and savor the true taste of Palestine.",
   },
   {
     id: "nermin-aiad-design",
-    name: "Graphic Designer - Freelance",
+    name: "Nermin Aiad",
     category: "Design",
+    website: "https://www.behance.net/nermin-aiad?locale=de_DE",
     email: "nerminfora5@gmail.com",
     phone: "970 597 790 536",
     story:
@@ -105,6 +114,7 @@ export const businesses: BusinessProfile[] = [
     id: "palestinian-hands",
     name: "Palestinian hands",
     category: "Selling handmade Palestinian embroidery goods",
+    website: "https://palestinian-hands.com/",
     email: "elramlylaila8@gmail.com",
     phone: "4167956011",
     story:
@@ -135,6 +145,10 @@ export const businesses: BusinessProfile[] = [
     id: "neveens-kitchen",
     name: "Neveen's Kitchen",
     category: "Food",
+    social: "https://www.instagram.com/neveens.kitchen/",
+    instagramEmbedUrl: toInstagramEmbed(
+      "https://www.instagram.com/neveens.kitchen/"
+    ),
     phone: "437 838 6177",
     story: placeholderStory,
   },

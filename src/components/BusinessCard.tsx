@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Globe, Mail, Phone, Share2 } from "lucide-react";
+import { Globe, Mail, Phone } from "lucide-react";
 import type { BusinessProfile } from "../data/businesses";
 
 const ensureProtocol = (value: string) =>
@@ -21,16 +21,8 @@ export type BusinessCardProps = {
 };
 
 export function BusinessCard({ profile }: BusinessCardProps) {
-  const {
-    name,
-    category,
-    email,
-    social,
-    website,
-    phone,
-    story,
-    instagramEmbedUrl,
-  } = profile;
+  const { name, category, email, website, phone, story, instagramEmbedUrl } =
+    profile;
 
   const detailItems = [
     website && {
@@ -47,14 +39,6 @@ export function BusinessCard({ profile }: BusinessCardProps) {
       value: email,
       icon: Mail,
       href: `mailto:${email}`,
-    },
-    social && {
-      key: "social",
-      label: "Social",
-      value: social,
-      icon: Share2,
-      href: ensureProtocol(social),
-      target: "_blank" as const,
     },
     phone && {
       key: "phone",
