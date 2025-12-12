@@ -1,23 +1,10 @@
-import { useState, type CSSProperties } from "react";
+import { useState } from "react";
 import { BusinessCard } from "./components/BusinessCard";
 import { businesses } from "./data/businesses";
 
 const categoryOptions = Array.from(
   new Set(businesses.map((business) => business.category))
 ).sort();
-
-const heroWatermelonPattern: CSSProperties = {
-  backgroundImage:
-    "linear-gradient(180deg, rgba(244,108,119,0.25) 0%, rgba(255,255,255,0.9) 70%, rgba(54,111,71,0.15) 100%)," +
-    "repeating-linear-gradient(120deg, rgba(255,255,255,0.4) 0, rgba(255,255,255,0.4) 22px, transparent 22px, transparent 44px)," +
-    "radial-gradient(circle at 10% 30%, rgba(34,34,34,0.08) 0.8%, transparent 3%)," +
-    "radial-gradient(circle at 25% 55%, rgba(34,34,34,0.08) 1%, transparent 3.5%)," +
-    "radial-gradient(circle at 55% 35%, rgba(34,34,34,0.08) 0.9%, transparent 3%)," +
-    "radial-gradient(circle at 80% 45%, rgba(34,34,34,0.08) 0.8%, transparent 3%)," +
-    "radial-gradient(circle at 92% 20%, rgba(34,34,34,0.08) 0.75%, transparent 3%)",
-  backgroundSize:
-    "100% 100%, 320px 320px, 280px 280px, 340px 340px, 360px 360px, 380px 380px, 420px 420px",
-};
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -29,70 +16,14 @@ function App() {
 
   return (
     <div className="min-h-screen bg-page text-flag-charcoal">
-      <section
-        className="relative overflow-hidden border-b border-flag-sand/40 bg-linear-to-b from-flag-cream via-flag-cream to-flag-green/10 pb-16 pt-14"
-        style={heroWatermelonPattern}
-      >
-        <div
-          className="pointer-events-none absolute inset-0 pal-pattern opacity-10"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-0 fiber-paper opacity-70 mix-blend-soft-light"
-          aria-hidden
-        />
-        <div className="relative mx-auto flex max-w-4xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
-          <header className="space-y-5">
-            <p className="inline-flex w-fit items-center gap-2 rounded-md bg-flag-green/90 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-flag-cream">
-              From Gaza, with care
-            </p>
-            <h1 className="text-4xl font-black leading-snug text-flag-charcoal sm:text-5xl">
-              Holding space for Gazawi families doing business with heart.
-            </h1>
-            <p className="max-w-3xl text-base leading-relaxed text-flag-charcoal/85 sm:text-lg">
-              This directory is meant to feel like gathering in someone’s living
-              room: shoes off, tea poured, stories offered with tenderness. Each
-              listing will soon carry a family’s voice alongside the details you
-              need to support them.
-            </p>
-          </header>
-
-          <div className="grid gap-4 rounded-2xl border border-flag-green/30 bg-flag-green/10 p-6 shadow-soft sm:grid-cols-3">
-            <div>
-              <p className="text-4xl font-black text-flag-green">
-                {filteredBusinesses.length}
-              </p>
-              <p className="text-xs uppercase tracking-[0.25em] text-flag-charcoal/70">
-                Families listed
-              </p>
-            </div>
-            <div className="sm:col-span-2">
-              <p className="text-sm leading-relaxed text-flag-charcoal/80">
-                We are writing each story shoulder-to-shoulder with the
-                families. Placeholders keep the rhythm of the page steady until
-                every paragraph is ready.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <header className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-24">
+        <h1 className="text-4xl font-black leading-snug text-flag-charcoal sm:text-5xl">
+          Holding space for Gazawi families doing business with heart.
+        </h1>
+      </header>
 
       <main className="mx-auto max-w-3xl px-4 pb-24 pt-12 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4">
-          <div className="rounded-2xl border border-flag-sand/50 bg-white/85 p-6 shadow-soft">
-            <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.4em] text-flag-green">
-              Directory
-            </p>
-            <h2 className="mt-2 text-3xl font-bold text-flag-charcoal">
-              Families we are spotlighting
-            </h2>
-            <p className="mt-3 max-w-3xl text-base leading-relaxed text-flag-charcoal/80">
-              Browse the cards below like you would leaf through a keepsake box.
-              Contact details sit beside memories, recipes, and craft notes—all
-              of it grounded in Palestine’s colors and care.
-            </p>
-          </div>
-
           <div className="rounded-2xl border border-flag-green/20 bg-white/80 p-4 shadow-soft">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-flag-charcoal/70">
               Filter by craft
@@ -107,10 +38,10 @@ function App() {
                     type="button"
                     onClick={() => setSelectedCategory(option)}
                     aria-pressed={isActive}
-                    className={`rounded-full border px-4 py-2 text-sm font-semibold shadow-sm transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flag-green ${
+                    className={`rounded-full border px-4 py-2 text-sm font-semibold shadow-sm transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flag-red ${
                       isActive
-                        ? "border-flag-green bg-flag-green text-flag-cream"
-                        : "border-flag-green/30 bg-white text-flag-charcoal/80 hover:bg-flag-green/10"
+                        ? "border-flag-red bg-flag-red text-flag-cream"
+                        : "border-flag-green/30 bg-white text-flag-charcoal/80 hover:bg-flag-red/5"
                     }`}
                   >
                     {label}

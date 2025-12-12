@@ -21,8 +21,16 @@ export type BusinessCardProps = {
 };
 
 export function BusinessCard({ profile }: BusinessCardProps) {
-  const { name, category, email, website, phone, story, instagramEmbedUrl } =
-    profile;
+  const {
+    name,
+    category,
+    email,
+    website,
+    phone,
+    story,
+    instagramEmbedUrl,
+    pdfUrl,
+  } = profile;
 
   const detailItems = [
     website && {
@@ -49,14 +57,16 @@ export function BusinessCard({ profile }: BusinessCardProps) {
     },
   ].filter((item): item is DetailItem => Boolean(item));
 
+  const safePdfUrl = pdfUrl ? encodeURI(pdfUrl) : undefined;
+
   return (
-    <article className="card-tape relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-flag-green/25 bg-flag-cream/90 p-6 text-sm shadow-card transition hover:-translate-y-1 hover:border-flag-green/50 hover:shadow-card-strong">
+    <article className="card-tape relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-flag-green/25 bg-flag-cream/95 p-6 text-sm shadow-card transition hover:-translate-y-1 hover:border-flag-red/40 hover:shadow-card-strong">
       <div
         className="pointer-events-none absolute inset-0 fiber-paper opacity-70 mix-blend-multiply"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-x-8 top-0 h-2 bg-linear-to-r from-flag-green/90 via-flag-sand/80 to-flag-red/70 opacity-80"
+        className="pointer-events-none absolute inset-x-8 top-0 h-2 rounded-b-full bg-flag-red/70 opacity-70"
         aria-hidden
       />
 
@@ -77,7 +87,7 @@ export function BusinessCard({ profile }: BusinessCardProps) {
                     href={href}
                     target={target}
                     rel={target === "_blank" ? "noreferrer" : undefined}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-flag-green/40 bg-white/80 text-flag-green shadow-sm transition hover:-translate-y-0.5 hover:border-flag-green/60 hover:text-flag-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flag-red"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-flag-red/30 bg-white/85 text-flag-red shadow-sm transition hover:-translate-y-0.5 hover:border-flag-red/60 hover:bg-flag-red/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flag-green"
                     aria-label={`${label}: ${value}`}
                   >
                     <Icon className="h-4 w-4" />
@@ -109,21 +119,50 @@ export function BusinessCard({ profile }: BusinessCardProps) {
         </div>
       </section>
 
-      {instagramEmbedUrl && (
-        <div className="relative mt-auto rounded-xl border border-flag-green/30 bg-white/70 p-3 shadow-soft">
-          <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-flag-charcoal/60">
-            Instagram glimpse
-          </p>
-          <div className="relative overflow-hidden rounded-lg border border-flag-green/20 bg-flag-charcoal/5">
-            <iframe
-              title={`${name} Instagram window`}
-              src={`${instagramEmbedUrl}?cr=1&v=12`}
-              loading="lazy"
-              allow="encrypted-media"
-              width="100%"
-              className="w-full aspect-8/7"
-            />
-          </div>
+      {(safePdfUrl || instagramEmbedUrl) && (
+        <div className="mt-auto space-y-4">
+          {safePdfUrl && (
+            <div className="relative rounded-xl border border-flag-green/30 bg-white/70 p-3 shadow-soft">
+              <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-flag-charcoal/60">
+                Portfolio PDF
+              </p>
+              <div className="relative overflow-hidden rounded-lg border border-flag-green/20 bg-flag-charcoal/5">
+                <iframe
+                  title={`${name} PDF preview`}
+                  src={`${safePdfUrl}#toolbar=0&navpanes=0`}
+                  loading="lazy"
+                  className="h-[26rem] w-full"
+                />
+              </div>
+              <a
+                href={safePdfUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 inline-flex items-center gap-2 rounded-full border border-flag-green/50 px-4 py-2 text-sm font-semibold text-flag-green transition hover:-translate-y-0.5 hover:border-flag-green/70 hover:text-flag-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flag-red"
+              >
+                Open full PDF
+                <span aria-hidden>↗</span>
+              </a>
+            </div>
+          )}
+
+          {instagramEmbedUrl && (
+            <div className="relative rounded-xl border border-flag-green/30 bg-white/70 p-3 shadow-soft">
+              <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-flag-charcoal/60">
+                Instagram glimpse
+              </p>
+              <div className="relative overflow-hidden rounded-lg border border-flag-green/20 bg-flag-charcoal/5">
+                <iframe
+                  title={`${name} Instagram window`}
+                  src={`${instagramEmbedUrl}?cr=1&v=12`}
+                  loading="lazy"
+                  allow="encrypted-media"
+                  width="100%"
+                  className="w-full aspect-8/7"
+                />
+              </div>
+            </div>
+          )}
         </div>
       )}
     </article>

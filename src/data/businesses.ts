@@ -1,13 +1,14 @@
+import nerminPdf from "../assets/nermin.pdf";
 export type BusinessProfile = {
   id: string;
   name: string;
   category: string;
   email?: string;
-  social?: string;
   website?: string;
   phone?: string;
   story: string;
   instagramEmbedUrl?: string;
+  pdfUrl?: string;
 };
 
 const placeholderStory =
@@ -24,7 +25,6 @@ export const businesses: BusinessProfile[] = [
     id: "mo-cuts",
     name: "Mo Cuts",
     category: "Barber",
-    social: "https://www.instagram.com/mo_cuts07?igsh=MWFjemd1eGhiZnJ6dA==",
     phone: "2897075944",
     story:
       "Mo Cuts Studio was founded by a Gazan barber who learned his craft in Gaza during the genocide and continues that work here in Canada. Built on skill, precision, and passion, the studio offers expert cuts and grooming that blend authentic technique with modern style.",
@@ -35,6 +35,9 @@ export const businesses: BusinessProfile[] = [
     name: "Yansoona Bakery",
     category: "Date Cookie Bracelets",
     email: "neqdaih@gmail.com",
+    instagramEmbedUrl: toInstagramEmbed(
+      "https://www.instagram.com/yansoonabakery/"
+    ),
     phone: "905 971 6700",
     story:
       'At "Yansoona" (meaning "Anise" in Arabic), we craft our mouth-melting, well-spiced treasures to decorate your tables on every delightful occasion. Paired with a cup of aromatic tea or coffee, each bite invites you to savor moments of joy, heritage, and togetherness. Our Date Bracelet Cookies (Kaak Asawer) bring the taste and aroma of Gazan Eid nights into your home.',
@@ -45,6 +48,9 @@ export const businesses: BusinessProfile[] = [
     category: "Art / Merchandise",
     website: "https://www.auctionzone.ca/",
     email: "auctionzoneservice@gmail.com",
+    instagramEmbedUrl: toInstagramEmbed(
+      "https://www.instagram.com/auctionzone_canada/"
+    ),
     phone: "437 772 4147",
     story:
       "Auction Zone Canada is your go-to bidding platform where excitement meets opportunity. Discover unique items, great value, and hidden deals with surprises waiting inside every auction!",
@@ -53,7 +59,6 @@ export const businesses: BusinessProfile[] = [
     id: "al-dar-catering",
     name: "Al Dar Catering",
     category: "Food",
-    social: "https://www.instagram.com/al_dar_catering/",
     instagramEmbedUrl: toInstagramEmbed(
       "https://www.instagram.com/al_dar_catering/"
     ),
@@ -66,6 +71,9 @@ export const businesses: BusinessProfile[] = [
     name: "Supreme Car Wash",
     category: "Car Detailing",
     phone: "(905) 749-3912",
+    instagramEmbedUrl: toInstagramEmbed(
+      "https://www.instagram.com/supreme__car_wash/"
+    ),
     story:
       "Supreme Car Wash was founded to provide high-quality car cleaning services at fair, accessible prices while building a family business that helps support our new life in Canada. With care, precision, and dedication, every wash reflects our commitment to excellence and community.",
   },
@@ -73,7 +81,6 @@ export const businesses: BusinessProfile[] = [
     id: "rajaa-moda",
     name: "Rajaa Moda",
     category: "Clothes",
-    social: "https://www.instagram.com/rmoda426?igsh=NGJxbjNtY2lxNTFm",
     phone: "6476400334",
     story:
       "Rajaa Moda offers elegant women's sets, pyjamas, and stylish hijabs that blend comfort with timeless design. Inspired by refined Turkish fashion, each piece celebrates beauty in modesty and effortless everyday style.",
@@ -84,6 +91,9 @@ export const businesses: BusinessProfile[] = [
     name: "Forno Amore",
     category: "Food",
     email: "nourrajjab@gmail.com",
+    instagramEmbedUrl: toInstagramEmbed(
+      "https://www.instagram.com/forno._amore/"
+    ),
     phone: "(437) 385-2655",
     story:
       "Forno Amore is a Palestinian homemade bakery sharing the authentic flavors of Palestine, made from heart to heart. Every baked good is crafted with love, tradition, and the warmth of home, bringing a taste of Palestine to your table.",
@@ -92,7 +102,6 @@ export const businesses: BusinessProfile[] = [
     id: "lammetna",
     name: "Lammetna",
     category: "Food",
-    social: "https://www.instagram.com/lammetnakitchen/",
     instagramEmbedUrl: toInstagramEmbed(
       "https://www.instagram.com/lammetnakitchen/"
     ),
@@ -109,11 +118,15 @@ export const businesses: BusinessProfile[] = [
     phone: "970 597 790 536",
     story:
       "Nermin Aiad is a graphic designer who brings ideas to life through meaningful design--crafting branding, business cards, flyers, and social media visuals that tell each project's story. Her love for art also flows into her tatreez, where every stitch weaves the stories of her homeland and keeps its heritage alive.",
+    pdfUrl: nerminPdf,
   },
   {
     id: "palestinian-hands",
     name: "Palestinian hands",
     category: "Selling handmade Palestinian embroidery goods",
+    instagramEmbedUrl: toInstagramEmbed(
+      "https://www.instagram.com/palestinianhand2025/"
+    ),
     website: "https://palestinian-hands.com/",
     email: "elramlylaila8@gmail.com",
     phone: "4167956011",
@@ -124,7 +137,6 @@ export const businesses: BusinessProfile[] = [
     id: "cake-up",
     name: "Cake up",
     category: "Cakes / Dessert",
-    social: "https://www.instagram.com/cake_up_1?igsh=MTF5YjNrMTgwNnF3ZQ==",
     phone: "437-662-6262",
     story:
       "Founded by a Gazan baker building a new chapter in Canada, Cake Up blends tradition with creativity to craft beautifully made cakes, cupcakes, and cheesecakes. Each dessert reflects a passion for flavor, design, and the comforting sweetness of home.",
@@ -134,7 +146,6 @@ export const businesses: BusinessProfile[] = [
     id: "nevins-maamool",
     name: "Nevin's Ma3mool",
     category: "Ma3mool and Ka'ak",
-    social: "https://www.instagram.com/gaza.cookies/",
     story:
       "Nevin's Ma'amool crafts traditional ma'amool cookies the Gazawi way, delicate, fragrant, and filled with the flavors of home. Each piece is made with care and love, preserving a timeless taste passed down through generations.",
     instagramEmbedUrl: toInstagramEmbed(
@@ -145,18 +156,10 @@ export const businesses: BusinessProfile[] = [
     id: "neveens-kitchen",
     name: "Neveen's Kitchen",
     category: "Food",
-    social: "https://www.instagram.com/neveens.kitchen/",
     instagramEmbedUrl: toInstagramEmbed(
       "https://www.instagram.com/neveens.kitchen/"
     ),
     phone: "437 838 6177",
-    story: placeholderStory,
-  },
-  {
-    id: "hijab-islamic-fashion",
-    name: "Hijab Islamic Fashion",
-    category: "Clothes",
-    phone: "437 830 6940",
     story: placeholderStory,
   },
 ];
