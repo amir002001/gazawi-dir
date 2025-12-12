@@ -22,6 +22,22 @@ function App() {
         <h1 className="text-8xl font-black leading-snug uppercase max-[768px]:text-5xl">
           PYM PICKS
         </h1>
+        <div className="gap-1 flex flex-col bg-flag-green/30 text-black rounded-2xl border border-flag-green/20 p-4">
+          <p className="text-lg">
+            These picks are the PYM Toronto Chapter’s first choice for where to
+            shop, enjoy great meals, get your hair cut, and connect with the
+            businesses that make our community so special. Each one of these
+            businesses was started by Gazawi families and individuals who
+            evacuated from Gaza during the war and planted new roots here with
+            us in the GTA.
+          </p>
+          <p className="text-lg">
+            By supporting these businesses, you’re not only enjoying quality
+            products and services, you’re also uplifting newcomers,
+            strengthening our community, and helping preserve cultural threads
+            that keeps us connected to our homeland.
+          </p>
+        </div>
       </header>
 
       <main className="mx-auto max-w-3xl px-4 pb-24 pt-4 sm:px-6 lg:px-8">
