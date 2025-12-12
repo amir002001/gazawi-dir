@@ -19,12 +19,12 @@ function App() {
     <div className="min-h-screen text-flag-black">
       <header className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-24 flex items-center w-full flex-col justify-center">
         <img src={WatermelonWalk} className="max-w-md"></img>
-        <h1 className="text-6xl font-black leading-snug uppercase max-[768px]:text-2xl">
-          Watermelon Pages
+        <h1 className="text-8xl font-black leading-snug uppercase max-[768px]:text-5xl">
+          PYM PICKS
         </h1>
       </header>
 
-      <main className="mx-auto max-w-3xl px-4 pb-24 pt-12 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-3xl px-4 pb-24 pt-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4">
           <div className="rounded-2xl border border-flag-green/20 bg-white/80 p-4 shadow-soft">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-flag-black/70">
