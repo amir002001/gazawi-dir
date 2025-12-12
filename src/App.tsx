@@ -49,7 +49,7 @@ function App() {
             <div className="flex flex-wrap gap-2">
               {["all", ...categoryOptions].map((option) => {
                 const isActive = selectedCategory === option;
-                const label = option === "all" ? "All families" : option;
+                const label = option === "all" ? "All Businesses" : option;
                 return (
                   <button
                     key={option}

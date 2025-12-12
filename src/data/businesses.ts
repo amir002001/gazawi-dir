@@ -1,8 +1,15 @@
 import nerminPdf from "../assets/nermin.pdf";
+export type Category =
+  | "Lifestyle"
+  | "Clothes"
+  | "Food"
+  | "Dessert"
+  | "Design"
+  | "Art / Merchandise";
 export type BusinessProfile = {
   id: string;
   name: string;
-  category: string;
+  category: Category;
   email?: string;
   website?: string;
   phone?: string;
@@ -24,7 +31,7 @@ export const businesses: BusinessProfile[] = [
   {
     id: "mo-cuts",
     name: "Mo Cuts",
-    category: "Barber",
+    category: "Lifestyle",
     phone: "2897075944",
     story:
       "Mo Cuts Studio was founded by a Gazan barber who learned his craft in Gaza during the genocide and continues that work here in Canada. Built on skill, precision, and passion, the studio offers expert cuts and grooming that blend authentic technique with modern style.",
@@ -33,7 +40,7 @@ export const businesses: BusinessProfile[] = [
   {
     id: "yansoona-bakery",
     name: "Yansoona Bakery",
-    category: "Date Cookie Bracelets",
+    category: "Dessert",
     email: "neqdaih@gmail.com",
     instagramEmbedUrl: toInstagramEmbed(
       "https://www.instagram.com/yansoonabakery/"
@@ -69,7 +76,7 @@ export const businesses: BusinessProfile[] = [
   {
     id: "supreme-car-wash",
     name: "Supreme Car Wash",
-    category: "Car Detailing",
+    category: "Lifestyle",
     phone: "(905) 749-3912",
     instagramEmbedUrl: toInstagramEmbed(
       "https://www.instagram.com/supreme__car_wash/"
@@ -123,7 +130,7 @@ export const businesses: BusinessProfile[] = [
   {
     id: "palestinian-hands",
     name: "Palestinian hands",
-    category: "Selling handmade Palestinian embroidery goods",
+    category: "Art / Merchandise",
     instagramEmbedUrl: toInstagramEmbed(
       "https://www.instagram.com/palestinianhand2025/"
     ),
@@ -136,7 +143,7 @@ export const businesses: BusinessProfile[] = [
   {
     id: "cake-up",
     name: "Cake up",
-    category: "Cakes / Dessert",
+    category: "Dessert",
     phone: "437-662-6262",
     story:
       "Founded by a Gazan baker building a new chapter in Canada, Cake Up blends tradition with creativity to craft beautifully made cakes, cupcakes, and cheesecakes. Each dessert reflects a passion for flavor, design, and the comforting sweetness of home.",
@@ -145,7 +152,7 @@ export const businesses: BusinessProfile[] = [
   {
     id: "nevins-maamool",
     name: "Nevin's Ma3mool",
-    category: "Ma3mool and Ka'ak",
+    category: "Dessert",
     story:
       "Nevin's Ma'amool crafts traditional ma'amool cookies the Gazawi way, delicate, fragrant, and filled with the flavors of home. Each piece is made with care and love, preserving a timeless taste passed down through generations.",
     instagramEmbedUrl: toInstagramEmbed(
