@@ -1,6 +1,5 @@
 import type { LucideIcon } from "lucide-react";
 import { Globe, Mail, Phone } from "lucide-react";
-import logoPlaceholder from "../assets/keffiyeh.jpeg";
 import type { BusinessProfile } from "../data/businesses";
 
 const ensureProtocol = (value: string) =>
@@ -31,7 +30,6 @@ export function BusinessCard({ profile }: BusinessCardProps) {
     story,
     instagramEmbedUrl,
     pdfUrl,
-    logoUrl,
   } = profile;
 
   const detailItems = [
@@ -60,17 +58,6 @@ export function BusinessCard({ profile }: BusinessCardProps) {
   ].filter((item): item is DetailItem => Boolean(item));
 
   const safePdfUrl = pdfUrl ? encodeURI(pdfUrl) : undefined;
-  const logoSrc = (() => {
-    if (!logoUrl) return logoPlaceholder;
-    if (
-      logoUrl.startsWith("http") ||
-      logoUrl.startsWith("/") ||
-      logoUrl.startsWith("data:")
-    ) {
-      return logoUrl;
-    }
-    return ensureProtocol(logoUrl);
-  })();
 
   return (
     <article className="card-tape bg-white relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-flag-green/25 bg-flag-cream/95 p-6 text-sm shadow-card transition hover:-translate-y-1 hover:border-flag-red/40 hover:shadow-card-strong">

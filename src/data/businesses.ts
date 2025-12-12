@@ -6,7 +6,6 @@ export type BusinessProfile = {
   email?: string;
   website?: string;
   phone?: string;
-  logoUrl?: string;
   story: string;
   instagramEmbedUrl?: string;
   pdfUrl?: string;
