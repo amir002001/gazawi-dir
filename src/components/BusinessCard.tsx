@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import { Globe, Mail, Phone } from "lucide-react";
+import logoPlaceholder from "../assets/keffiyeh.jpeg";
 import type { BusinessProfile } from "../data/businesses";
 
 const ensureProtocol = (value: string) =>
@@ -30,6 +31,7 @@ export function BusinessCard({ profile }: BusinessCardProps) {
     story,
     instagramEmbedUrl,
     pdfUrl,
+    logoUrl,
   } = profile;
 
   const detailItems = [
@@ -58,28 +60,38 @@ export function BusinessCard({ profile }: BusinessCardProps) {
   ].filter((item): item is DetailItem => Boolean(item));
 
   const safePdfUrl = pdfUrl ? encodeURI(pdfUrl) : undefined;
+  const logoSrc = (() => {
+    if (!logoUrl) return logoPlaceholder;
+    if (
+      logoUrl.startsWith("http") ||
+      logoUrl.startsWith("/") ||
+      logoUrl.startsWith("data:")
+    ) {
+      return logoUrl;
+    }
+    return ensureProtocol(logoUrl);
+  })();
 
   return (
-    <article className="card-tape relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-flag-green/25 bg-flag-cream/95 p-6 text-sm shadow-card transition hover:-translate-y-1 hover:border-flag-red/40 hover:shadow-card-strong">
+    <article className="card-tape bg-white relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-flag-green/25 bg-flag-cream/95 p-6 text-sm shadow-card transition hover:-translate-y-1 hover:border-flag-red/40 hover:shadow-card-strong">
       <div
         className="pointer-events-none absolute inset-0 fiber-paper opacity-70 mix-blend-multiply"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-x-8 top-0 h-2 rounded-b-full bg-flag-red/70 opacity-70"
+        className="pointer-events-none absolute inset-x-8 top-0 h-2 rounded-b-full bg-flag-green/70 "
         aria-hidden
       />
 
-      <header className="relative space-y-3">
-        <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-flag-green">
-          {category}
-        </p>
-        <div className="flex flex-wrap items-center gap-3">
-          <h3 className="text-2xl font-bold text-flag-charcoal flex-1">
-            {name}
-          </h3>
+      <p className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.3em] text-flag-green">
+        {category}
+      </p>
+
+      <div className="profile flex w-full justify-between">
+        <div className="details-box flex flex-col gap-2">
+          <h3 className="text-2xl font-bold ">{name}</h3>
           {detailItems.length > 0 && (
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               {detailItems.map(
                 ({ key, label, value, icon: Icon, href, target }) => (
                   <a
@@ -97,9 +109,13 @@ export function BusinessCard({ profile }: BusinessCardProps) {
             </div>
           )}
         </div>
-      </header>
+      </div>
+      <span
+        className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-flag-green/25"
+        aria-hidden
+      />
 
-      <section className="relative space-y-4 text-base leading-relaxed text-flag-charcoal/90">
+      <section className="relative space-y-4 text-base leading-relaxed ">
         <div className="inline-flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-flag-green/80">
           <span
             className="inline-block h-px w-10 bg-flag-green/50"
@@ -123,15 +139,15 @@ export function BusinessCard({ profile }: BusinessCardProps) {
         <div className="mt-auto space-y-4">
           {safePdfUrl && (
             <div className="relative rounded-xl border border-flag-green/30 bg-white/70 p-3 shadow-soft">
-              <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-flag-charcoal/60">
+              <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.3em] ">
                 Portfolio PDF
               </p>
-              <div className="relative overflow-hidden rounded-lg border border-flag-green/20 bg-flag-charcoal/5">
+              <div className="relative overflow-hidden rounded-lg border border-flag-green/20 ">
                 <iframe
                   title={`${name} PDF preview`}
                   src={`${safePdfUrl}#toolbar=0&navpanes=0`}
                   loading="lazy"
-                  className="h-[26rem] w-full"
+                  className="h-104 w-full"
                 />
               </div>
               <a
@@ -148,10 +164,10 @@ export function BusinessCard({ profile }: BusinessCardProps) {
 
           {instagramEmbedUrl && (
             <div className="relative rounded-xl border border-flag-green/30 bg-white/70 p-3 shadow-soft">
-              <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-flag-charcoal/60">
+              <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.3em] ">
                 Instagram glimpse
               </p>
-              <div className="relative overflow-hidden rounded-lg border border-flag-green/20 bg-flag-charcoal/5">
+              <div className="relative overflow-hidden rounded-lg border border-flag-green/20 ">
                 <iframe
                   title={`${name} Instagram window`}
                   src={`${instagramEmbedUrl}?cr=1&v=12`}

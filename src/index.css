@@ -17,23 +17,16 @@
 
 @layer base {
   body {
-    @apply bg-page text-flag-charcoal antialiased;
+    @apply antialiased;
+    background-image: url(/src/assets/keffiyeh.jpeg);
+    background-size: 100px;
+    background-repeat: repeat;
+    background-color: rgba(255, 255, 255, 0.9);
+    background-blend-mode: lighten;
   }
 }
 
 @layer utilities {
-  .card-tape::before,
-  .card-tape::after {
-    content: "";
-    position: absolute;
-    inset-inline: 18%;
-    height: 16px;
-    background: color-mix(in srgb, var(--color-flag-sand) 70%, #fff);
-    opacity: 0.7;
-    border-radius: 2px;
-    box-shadow: 0 4px 8px -4px color-mix(in srgb, var(--color-flag-black) 25%, transparent);
-  }
-
   .card-tape::before {
     top: -10px;
     transform: rotate(-2deg);
