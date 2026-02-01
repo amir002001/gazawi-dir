@@ -43,7 +43,7 @@ export const businesses: BusinessProfile[] = [
     category: "Dessert",
     email: "neqdaih@gmail.com",
     instagramEmbedUrl: toInstagramEmbed(
-      "https://www.instagram.com/yansoonabakery/"
+      "https://www.instagram.com/yansoonabakery/",
     ),
     phone: "905 971 6700",
     story:
@@ -56,7 +56,7 @@ export const businesses: BusinessProfile[] = [
     website: "https://www.auctionzone.ca/",
     email: "auctionzoneservice@gmail.com",
     instagramEmbedUrl: toInstagramEmbed(
-      "https://www.instagram.com/auctionzone_canada/"
+      "https://www.instagram.com/auctionzone_canada/",
     ),
     phone: "437 772 4147",
     story:
@@ -67,7 +67,7 @@ export const businesses: BusinessProfile[] = [
     name: "Al Dar Catering",
     category: "Food",
     instagramEmbedUrl: toInstagramEmbed(
-      "https://www.instagram.com/al_dar_catering/"
+      "https://www.instagram.com/al_dar_catering/",
     ),
     phone: "905 749 6560",
     story:
@@ -79,7 +79,7 @@ export const businesses: BusinessProfile[] = [
     category: "Lifestyle",
     phone: "(905) 749-3912",
     instagramEmbedUrl: toInstagramEmbed(
-      "https://www.instagram.com/supreme__car_wash/"
+      "https://www.instagram.com/supreme__car_wash/",
     ),
     story:
       "Supreme Car Wash was founded to provide high-quality car cleaning services at fair, accessible prices while building a family business that helps support our new life in Canada. With care, precision, and dedication, every wash reflects our commitment to excellence and community.",
@@ -99,7 +99,7 @@ export const businesses: BusinessProfile[] = [
     category: "Food",
     email: "nourrajjab@gmail.com",
     instagramEmbedUrl: toInstagramEmbed(
-      "https://www.instagram.com/forno._amore/"
+      "https://www.instagram.com/forno._amore/",
     ),
     phone: "(437) 385-2655",
     story:
@@ -110,7 +110,7 @@ export const businesses: BusinessProfile[] = [
     name: "Lammetna",
     category: "Food",
     instagramEmbedUrl: toInstagramEmbed(
-      "https://www.instagram.com/lammetnakitchen/"
+      "https://www.instagram.com/lammetnakitchen/",
     ),
     phone: "(437) 385-7818",
     story:
@@ -121,6 +121,9 @@ export const businesses: BusinessProfile[] = [
     name: "Nermin Aiad",
     category: "Design",
     website: "https://www.behance.net/nermin-aiad?locale=de_DE",
+    instagramEmbedUrl: toInstagramEmbed(
+      "https://www.instagram.com/noonfonoon/",
+    ),
     email: "nerminfora5@gmail.com",
     phone: "970 597 790 536",
     story:
@@ -132,7 +135,7 @@ export const businesses: BusinessProfile[] = [
     name: "Palestinian hands",
     category: "Art / Merchandise",
     instagramEmbedUrl: toInstagramEmbed(
-      "https://www.instagram.com/palestinianhand2025/"
+      "https://www.instagram.com/palestinianhand2025/",
     ),
     website: "https://palestinian-hands.com/",
     email: "elramlylaila8@gmail.com",
@@ -156,7 +159,7 @@ export const businesses: BusinessProfile[] = [
     story:
       "Nevin's Ma'amool crafts traditional ma'amool cookies the Gazawi way, delicate, fragrant, and filled with the flavors of home. Each piece is made with care and love, preserving a timeless taste passed down through generations.",
     instagramEmbedUrl: toInstagramEmbed(
-      "https://www.instagram.com/gaza.cookies"
+      "https://www.instagram.com/gaza.cookies",
     ),
   },
   {
@@ -164,7 +167,7 @@ export const businesses: BusinessProfile[] = [
     name: "Neveen's Kitchen",
     category: "Food",
     instagramEmbedUrl: toInstagramEmbed(
-      "https://www.instagram.com/neveens.kitchen/"
+      "https://www.instagram.com/neveens.kitchen/",
     ),
     phone: "437 838 6177",
     story: placeholderStory,
